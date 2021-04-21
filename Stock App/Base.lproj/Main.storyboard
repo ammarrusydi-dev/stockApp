@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lx9-gL-0ig">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,11 +13,11 @@
             <objects>
                 <viewController id="9pv-A4-QxB" customClass="FirstViewController" customModule="Stock_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rOx-hd-Vyk">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h2Y-YV-hJq">
                                         <rect key="frame" x="20" y="20" width="374" height="50"/>
@@ -25,73 +26,79 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                         <state key="normal" title="Stock Name">
-                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="titleColor" name="YellowTheme"/>
                                         </state>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="3pG-jI-b9s">
-                                        <rect key="frame" x="20" y="80" width="374" height="40"/>
+                                        <rect key="frame" x="10" y="80" width="394" height="40"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mkg-h7-uz9">
-                                                <rect key="frame" x="0.0" y="0.0" width="93.5" height="40"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mkg-h7-uz9">
+                                                <rect key="frame" x="0.0" y="0.0" width="98.5" height="40"/>
+                                                <color key="backgroundColor" name="BlackBackground"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" name="YellowTheme"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Open" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NUR-GP-P8c">
-                                                <rect key="frame" x="93.5" y="0.0" width="93.5" height="40"/>
+                                                <rect key="frame" x="98.5" y="0.0" width="98.5" height="40"/>
+                                                <color key="backgroundColor" name="BlackBackground"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" name="YellowTheme"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UJn-eL-Q5m">
-                                                <rect key="frame" x="187" y="0.0" width="93.5" height="40"/>
+                                                <rect key="frame" x="197" y="0.0" width="98.5" height="40"/>
+                                                <color key="backgroundColor" name="BlackBackground"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" name="YellowTheme"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Low" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="elH-2T-GAa">
-                                                <rect key="frame" x="280.5" y="0.0" width="93.5" height="40"/>
+                                                <rect key="frame" x="295.5" y="0.0" width="98.5" height="40"/>
+                                                <color key="backgroundColor" name="BlackBackground"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" name="YellowTheme"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="pY0-XR-4PU"/>
                                         </constraints>
                                     </stackView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CAn-bJ-hDc">
-                                        <rect key="frame" x="20" y="150" width="374" height="545"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <rect key="frame" x="10" y="120" width="394" height="649"/>
+                                        <color key="backgroundColor" name="BlackBackground"/>
+                                        <color key="sectionIndexBackgroundColor" name="BlackBackground"/>
                                         <connections>
                                             <outlet property="dataSource" destination="9pv-A4-QxB" id="Vrm-Aw-BrA"/>
                                             <outlet property="delegate" destination="tsR-hK-woN" id="WhZ-5U-Y0e"/>
                                         </connections>
                                     </tableView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="h2Y-YV-hJq" firstAttribute="leading" secondItem="rOx-hd-Vyk" secondAttribute="leading" constant="20" id="6CU-gc-5Ff"/>
-                                    <constraint firstItem="CAn-bJ-hDc" firstAttribute="top" secondItem="3pG-jI-b9s" secondAttribute="bottom" constant="30" id="Dst-RC-xcB"/>
-                                    <constraint firstItem="CAn-bJ-hDc" firstAttribute="leading" secondItem="rOx-hd-Vyk" secondAttribute="leading" constant="20" id="E67-v5-YV8"/>
-                                    <constraint firstItem="3pG-jI-b9s" firstAttribute="leading" secondItem="rOx-hd-Vyk" secondAttribute="leading" constant="20" id="Jry-Is-9yy"/>
-                                    <constraint firstAttribute="bottom" secondItem="CAn-bJ-hDc" secondAttribute="bottom" constant="30" id="Jym-TT-5pP"/>
+                                    <constraint firstItem="CAn-bJ-hDc" firstAttribute="top" secondItem="3pG-jI-b9s" secondAttribute="bottom" id="Dst-RC-xcB"/>
+                                    <constraint firstItem="CAn-bJ-hDc" firstAttribute="leading" secondItem="rOx-hd-Vyk" secondAttribute="leading" constant="10" id="E67-v5-YV8"/>
+                                    <constraint firstItem="3pG-jI-b9s" firstAttribute="leading" secondItem="rOx-hd-Vyk" secondAttribute="leading" constant="10" id="Jry-Is-9yy"/>
+                                    <constraint firstAttribute="bottom" secondItem="CAn-bJ-hDc" secondAttribute="bottom" id="Jym-TT-5pP"/>
                                     <constraint firstItem="3pG-jI-b9s" firstAttribute="top" secondItem="h2Y-YV-hJq" secondAttribute="bottom" constant="10" id="Pnl-be-93u"/>
                                     <constraint firstItem="h2Y-YV-hJq" firstAttribute="top" secondItem="rOx-hd-Vyk" secondAttribute="top" constant="20" id="RCV-Gg-Y7C"/>
-                                    <constraint firstAttribute="trailing" secondItem="CAn-bJ-hDc" secondAttribute="trailing" constant="20" id="ih2-uW-LGl"/>
+                                    <constraint firstAttribute="trailing" secondItem="CAn-bJ-hDc" secondAttribute="trailing" constant="10" id="ih2-uW-LGl"/>
                                     <constraint firstAttribute="trailing" secondItem="h2Y-YV-hJq" secondAttribute="trailing" constant="20" id="nHx-VR-SQp"/>
-                                    <constraint firstAttribute="trailing" secondItem="3pG-jI-b9s" secondAttribute="trailing" constant="20" id="rKy-jU-XdF"/>
+                                    <constraint firstAttribute="trailing" secondItem="3pG-jI-b9s" secondAttribute="trailing" constant="10" id="rKy-jU-XdF"/>
                                 </constraints>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YWD-cU-C7E" customClass="SearchBarView" customModule="Stock_App" customModuleProvider="target">
-                                <rect key="frame" x="20" y="388" width="374" height="120"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YWD-cU-C7E" customClass="SearchBarView" customModule="Stock_App" customModuleProvider="target">
+                                <rect key="frame" x="20" y="346.5" width="374" height="120"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="Du8-0E-pHZ"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" name="BlackBackground"/>
                         <constraints>
                             <constraint firstItem="rOx-hd-Vyk" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" id="5RN-ud-wi7"/>
                             <constraint firstItem="PQr-Ze-W5v" firstAttribute="trailing" secondItem="rOx-hd-Vyk" secondAttribute="trailing" id="9zt-mf-uLn"/>
@@ -104,7 +111,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="First" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="First" image="person.fill" catalog="system" id="acW-dT-cKf">
+                        <color key="badgeColor" name="YellowTheme"/>
+                    </tabBarItem>
                     <connections>
                         <outlet property="SearchBarView" destination="YWD-cU-C7E" id="9ih-td-16h"/>
                         <outlet property="dateLbl" destination="mkg-h7-uz9" id="gwi-oW-g1R"/>
@@ -146,7 +155,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Fyf-Nx-ytK"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Third" image="second" id="jy9-ZK-AMh"/>
+                    <tabBarItem key="tabBarItem" title="Third" image="person.3.fill" catalog="system" id="jy9-ZK-AMh">
+                        <color key="badgeColor" name="YellowTheme"/>
+                    </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fj1-Ri-6kY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -158,17 +169,17 @@
             <objects>
                 <viewController id="8rJ-Kc-sve" customClass="SecondViewController" customModule="Stock_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Second View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zEq-FU-wV5">
-                                <rect key="frame" x="106" y="426.5" width="202" height="43"/>
+                                <rect key="frame" x="106" y="385" width="202" height="43"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loaded by SecondViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDk-cv-Gan">
-                                <rect key="frame" x="99.5" y="477.5" width="215" height="17"/>
+                                <rect key="frame" x="99.5" y="436" width="215" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -182,7 +193,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Second" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Second" image="person.2.fill" catalog="system" id="cPa-gy-q4n">
+                        <color key="badgeColor" name="YellowTheme"/>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
@@ -196,9 +209,6 @@
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
-                    <connections>
-                        <segue destination="49e-Tb-3d3" kind="relationship" relationship="rootViewController" id="tUJ-nQ-DEW"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="15f-vt-BtQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -209,11 +219,12 @@
             <objects>
                 <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="Title" id="X0t-o2-Xip"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
+                    <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="barTintColor" red="0.093768143965609188" green="0.10295992362120739" blue="0.20808217005076146" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="tintColor" name="YellowTheme"/>
+                        <color key="barTintColor" name="BlackTabBar"/>
                     </tabBar>
                     <connections>
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
@@ -227,7 +238,17 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
+        <image name="person.2.fill" catalog="system" width="128" height="80"/>
+        <image name="person.3.fill" catalog="system" width="128" height="61"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
+        <namedColor name="BlackBackground">
+            <color red="0.13725490196078433" green="0.13725490196078433" blue="0.13725490196078433" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="BlackTabBar">
+            <color red="0.094117647058823528" green="0.094117647058823528" blue="0.094117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="YellowTheme">
+            <color red="0.97647058823529409" green="0.72156862745098038" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

@@ -20,6 +20,8 @@
 		0D624206262F326900DB9FA8 /* FieldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D624204262F326900DB9FA8 /* FieldTableViewCell.xib */; };
 		0D624209262F50DA00DB9FA8 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D624208262F50DA00DB9FA8 /* NetworkManager.swift */; };
 		0D62420D262F54C800DB9FA8 /* IntradayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D62420C262F54C800DB9FA8 /* IntradayModel.swift */; };
+		0D62421026307E4800DB9FA8 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D62420F26307E4800DB9FA8 /* Color.swift */; };
+		0D624212263086A600DB9FA8 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D624211263086A600DB9FA8 /* Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		0D624204262F326900DB9FA8 /* FieldTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FieldTableViewCell.xib; sourceTree = "<group>"; };
 		0D624208262F50DA00DB9FA8 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		0D62420C262F54C800DB9FA8 /* IntradayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntradayModel.swift; sourceTree = "<group>"; };
+		0D62420F26307E4800DB9FA8 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		0D624211263086A600DB9FA8 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +81,7 @@
 				0D6241FA262F287400DB9FA8 /* View */,
 				0D6241EA2627440B00DB9FA8 /* Main.storyboard */,
 				0D6241ED2627440D00DB9FA8 /* Assets.xcassets */,
+				0D62420E26307E2C00DB9FA8 /* Helper */,
 				0D624207262F50A700DB9FA8 /* Manager */,
 				0D6241EF2627440D00DB9FA8 /* LaunchScreen.storyboard */,
 				0D6241F22627440D00DB9FA8 /* Info.plist */,
@@ -118,6 +123,15 @@
 				0D6241E82627440B00DB9FA8 /* SecondViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		0D62420E26307E2C00DB9FA8 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				0D62420F26307E4800DB9FA8 /* Color.swift */,
+				0D624211263086A600DB9FA8 /* Extension.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,9 +212,11 @@
 				0D624205262F326900DB9FA8 /* FieldTableViewCell.swift in Sources */,
 				0D62420D262F54C800DB9FA8 /* IntradayModel.swift in Sources */,
 				0D624209262F50DA00DB9FA8 /* NetworkManager.swift in Sources */,
+				0D624212263086A600DB9FA8 /* Extension.swift in Sources */,
 				0D6241E72627440B00DB9FA8 /* FirstViewController.swift in Sources */,
 				0D6241E32627440B00DB9FA8 /* AppDelegate.swift in Sources */,
 				0D6241E52627440B00DB9FA8 /* SceneDelegate.swift in Sources */,
+				0D62421026307E4800DB9FA8 /* Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

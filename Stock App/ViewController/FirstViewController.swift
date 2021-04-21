@@ -18,7 +18,7 @@ class FirstViewController: UIViewController {
     private let cellIdentifier = "FieldTableViewCell"
     private var apiData: APIData?
     var intradayData: [String: IntradayData]? = [:]
-    var date: String = ""
+    var arrDate: [String] = []
     var arrStockData: [IntradayData] = []
     
     override func viewDidLoad() {
@@ -35,7 +35,7 @@ class FirstViewController: UIViewController {
             if self.intradayData?.count ?? 0 > 0 {
                 for (key, value) in self.intradayData! {
                     print("\(key) -> \(value)")
-                    self.date = key
+                    self.arrDate.append(key)
                     self.arrStockData.append(value)
                 }
             }
@@ -56,8 +56,13 @@ extension FirstViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? FieldTableViewCell else {
             fatalError("Issue with dequeuing \(cellIdentifier)")
         }
-        cell.configure(with : arrStockData[indexPath.row], date: self.date)
+        cell.configure(with : arrStockData[indexPath.row], date: self.arrDate[indexPath.row])
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        return 60
     }
 }
 
