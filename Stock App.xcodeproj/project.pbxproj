@@ -22,6 +22,12 @@
 		0D62420D262F54C800DB9FA8 /* IntradayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D62420C262F54C800DB9FA8 /* IntradayModel.swift */; };
 		0D62421026307E4800DB9FA8 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D62420F26307E4800DB9FA8 /* Color.swift */; };
 		0D624212263086A600DB9FA8 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D624211263086A600DB9FA8 /* Extension.swift */; };
+		0D6242172631C19B00DB9FA8 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6242152631C19B00DB9FA8 /* SearchViewController.swift */; };
+		0D6242182631C19B00DB9FA8 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D6242162631C19B00DB9FA8 /* SearchViewController.xib */; };
+		0D62421A2631C6AA00DB9FA8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6242192631C6AA00DB9FA8 /* Constants.swift */; };
+		0D62421C2631DDFC00DB9FA8 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D62421B2631DDFC00DB9FA8 /* SearchModel.swift */; };
+		0D62421F2631EFE800DB9FA8 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D62421D2631EFE800DB9FA8 /* SearchTableViewCell.swift */; };
+		0D6242202631EFE800DB9FA8 /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D62421E2631EFE800DB9FA8 /* SearchTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +48,12 @@
 		0D62420C262F54C800DB9FA8 /* IntradayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntradayModel.swift; sourceTree = "<group>"; };
 		0D62420F26307E4800DB9FA8 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		0D624211263086A600DB9FA8 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		0D6242152631C19B00DB9FA8 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		0D6242162631C19B00DB9FA8 /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
+		0D6242192631C6AA00DB9FA8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		0D62421B2631DDFC00DB9FA8 /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
+		0D62421D2631EFE800DB9FA8 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		0D62421E2631EFE800DB9FA8 /* SearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +108,8 @@
 				0D624200262F2C2800DB9FA8 /* SearchBarView.xib */,
 				0D624203262F326900DB9FA8 /* FieldTableViewCell.swift */,
 				0D624204262F326900DB9FA8 /* FieldTableViewCell.xib */,
+				0D62421D2631EFE800DB9FA8 /* SearchTableViewCell.swift */,
+				0D62421E2631EFE800DB9FA8 /* SearchTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -112,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				0D62420C262F54C800DB9FA8 /* IntradayModel.swift */,
+				0D62421B2631DDFC00DB9FA8 /* SearchModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -121,6 +136,8 @@
 			children = (
 				0D6241E62627440B00DB9FA8 /* FirstViewController.swift */,
 				0D6241E82627440B00DB9FA8 /* SecondViewController.swift */,
+				0D6242152631C19B00DB9FA8 /* SearchViewController.swift */,
+				0D6242162631C19B00DB9FA8 /* SearchViewController.xib */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -128,6 +145,7 @@
 		0D62420E26307E2C00DB9FA8 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				0D6242192631C6AA00DB9FA8 /* Constants.swift */,
 				0D62420F26307E4800DB9FA8 /* Color.swift */,
 				0D624211263086A600DB9FA8 /* Extension.swift */,
 			);
@@ -194,7 +212,9 @@
 			files = (
 				0D624202262F2C2800DB9FA8 /* SearchBarView.xib in Resources */,
 				0D624206262F326900DB9FA8 /* FieldTableViewCell.xib in Resources */,
+				0D6242182631C19B00DB9FA8 /* SearchViewController.xib in Resources */,
 				0D6241F12627440D00DB9FA8 /* LaunchScreen.storyboard in Resources */,
+				0D6242202631EFE800DB9FA8 /* SearchTableViewCell.xib in Resources */,
 				0D6241EE2627440D00DB9FA8 /* Assets.xcassets in Resources */,
 				0D6241EC2627440B00DB9FA8 /* Main.storyboard in Resources */,
 			);
@@ -207,7 +227,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D62421C2631DDFC00DB9FA8 /* SearchModel.swift in Sources */,
 				0D624201262F2C2800DB9FA8 /* SearchBarView.swift in Sources */,
+				0D6242172631C19B00DB9FA8 /* SearchViewController.swift in Sources */,
 				0D6241E92627440B00DB9FA8 /* SecondViewController.swift in Sources */,
 				0D624205262F326900DB9FA8 /* FieldTableViewCell.swift in Sources */,
 				0D62420D262F54C800DB9FA8 /* IntradayModel.swift in Sources */,
@@ -217,6 +239,8 @@
 				0D6241E32627440B00DB9FA8 /* AppDelegate.swift in Sources */,
 				0D6241E52627440B00DB9FA8 /* SceneDelegate.swift in Sources */,
 				0D62421026307E4800DB9FA8 /* Color.swift in Sources */,
+				0D62421A2631C6AA00DB9FA8 /* Constants.swift in Sources */,
+				0D62421F2631EFE800DB9FA8 /* SearchTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

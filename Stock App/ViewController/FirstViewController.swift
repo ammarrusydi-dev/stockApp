@@ -20,6 +20,8 @@ class FirstViewController: UIViewController {
     var intradayData: [String: IntradayData]? = [:]
     var arrDate: [String] = []
     var arrStockData: [IntradayData] = []
+    var interval: Int = 60
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,9 +31,31 @@ class FirstViewController: UIViewController {
     
     // API Call
     func fetchData() {
-        NetworkManager().fetchIntraday(symbol: "AAPL", interval: 5, outputSize: "compact") { (data) in
+        NetworkManager().fetchIntraday(symbol: "AAPL", interval: interval, outputSize: "compact") { (data) in
             self.apiData = data
+            
             self.intradayData = data.timeSeries5Min
+            
+            if self.interval == 1 {
+                self.intradayData = data.timeSeries1Min
+            }
+            else if self.interval == 5 {
+                self.intradayData = data.timeSeries5Min
+            }
+            else if self.interval == 10 {
+                self.intradayData = data.timeSeries10Min
+            }
+            else if self.interval == 15 {
+                self.intradayData = data.timeSeries15Min
+            }
+            else if self.interval == 30 {
+                self.intradayData = data.timeSeries30Min
+            }
+            else if self.interval == 60 {
+                self.intradayData = data.timeSeries60Min
+            }
+            
+            
             if self.intradayData?.count ?? 0 > 0 {
                 for (key, value) in self.intradayData! {
                     print("\(key) -> \(value)")
@@ -44,6 +68,11 @@ class FirstViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func searchBtnClicked(_ sender: Any) {
+        self.navigationController?.pushViewController(SearchViewController.getInstance(), animated: true)
+    }
+    
     
 }
 

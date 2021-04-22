@@ -8,9 +8,16 @@
 
 import UIKit
 
-class SearchBarView: UIView {
+// MARK: - Protocol
+protocol CustomSearchbarDelegate {
+    func cancelClicked()
+}
+
+class SearchBarView: UIView, UISearchBarDelegate {
 
     @IBOutlet var contentView: UIView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    var searchBarDelegate: CustomSearchbarDelegate?
     
     override open func awakeFromNib() {
            super.awakeFromNib()
@@ -35,6 +42,8 @@ class SearchBarView: UIView {
            let nib = UINib(nibName: "SearchBarView", bundle: bundle)
            guard let view = nib.instantiate(withOwner: self, options: nil).first as? UIView else{ return }
            view.frame = bounds
+        
+        searchBar.delegate = self
 
 //           view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 //           view.backgroundColor = UIColor.TAThemeColor
@@ -46,4 +55,34 @@ class SearchBarView: UIView {
 //           updateUI()
        }
 
+}
+
+
+extension SearchBarView {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+//        searchActive = true
+    }
+
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+//        searchActive = false
+    }
+
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+//        searchActive = false;
+
+        searchBar.text = nil
+        searchBar.resignFirstResponder()
+//        tableView.resignFirstResponder()
+        searchBar.showsCancelButton = false
+        searchBarDelegate?.cancelClicked()
+//        tableView.reloadData()
+    }
+
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+//        searchActive = false
+    }
+
+    func searchBarShouldEndEditing(searchBar: UISearchBar) -> Bool {
+                return true
+    }
 }

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchViewController" customModule="Stock_App" customModuleProvider="target">
+            <connections>
+                <outlet property="searchBar" destination="1g9-Mh-YkG" id="VwU-ra-qk9"/>
+                <outlet property="tblView" destination="OHT-Zi-eEI" id="bvR-kw-eot"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" restorationIdentifier="SearchViewController" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fey-WK-wUn">
+                    <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                    <subviews>
+                        <searchBar contentMode="redraw" placeholder="Search symbol" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1g9-Mh-YkG">
+                            <rect key="frame" x="20" y="20" width="374" height="60"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="60" id="OjU-sM-4Fg"/>
+                            </constraints>
+                            <color key="tintColor" name="YellowTheme"/>
+                            <color key="barTintColor" name="BlackBackground"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" returnKeyType="search"/>
+                            <scopeButtonTitles>
+                                <string>Title</string>
+                                <string>Title</string>
+                            </scopeButtonTitles>
+                        </searchBar>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OHT-Zi-eEI">
+                            <rect key="frame" x="0.0" y="80" width="414" height="772"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="zyD-zg-zrD"/>
+                                <outlet property="delegate" destination="-1" id="aDh-Af-FUp"/>
+                            </connections>
+                        </tableView>
+                    </subviews>
+                    <color key="backgroundColor" name="BlackBackground"/>
+                    <constraints>
+                        <constraint firstItem="1g9-Mh-YkG" firstAttribute="leading" secondItem="fey-WK-wUn" secondAttribute="leading" constant="20" id="6Cn-KJ-wIS"/>
+                        <constraint firstItem="OHT-Zi-eEI" firstAttribute="top" secondItem="1g9-Mh-YkG" secondAttribute="bottom" id="IMp-Rb-bKg"/>
+                        <constraint firstItem="OHT-Zi-eEI" firstAttribute="leading" secondItem="fey-WK-wUn" secondAttribute="leading" id="Pfe-rl-GfR"/>
+                        <constraint firstItem="1g9-Mh-YkG" firstAttribute="top" secondItem="fey-WK-wUn" secondAttribute="top" constant="20" id="WIl-CW-rnj"/>
+                        <constraint firstAttribute="trailing" secondItem="OHT-Zi-eEI" secondAttribute="trailing" id="aM7-R1-bWQ"/>
+                        <constraint firstAttribute="trailing" secondItem="1g9-Mh-YkG" secondAttribute="trailing" constant="20" id="hfY-na-wiK"/>
+                        <constraint firstAttribute="bottom" secondItem="OHT-Zi-eEI" secondAttribute="bottom" id="y9l-uA-i4y"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" name="BlackBackground"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="fey-WK-wUn" secondAttribute="bottom" id="MC4-Vf-9Qz"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="fey-WK-wUn" secondAttribute="trailing" id="PjM-hI-o1v"/>
+                <constraint firstItem="fey-WK-wUn" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="kAY-nd-DhQ"/>
+                <constraint firstItem="fey-WK-wUn" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="vAA-xx-VbS"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="137.68115942028987" y="117.85714285714285"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="BlackBackground">
+            <color red="0.13725490196078433" green="0.13725490196078433" blue="0.13725490196078433" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="YellowTheme">
+            <color red="0.97647058823529409" green="0.72156862745098038" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

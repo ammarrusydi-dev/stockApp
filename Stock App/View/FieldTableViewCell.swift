@@ -23,11 +23,9 @@ class FieldTableViewCell: UITableViewCell {
 
     func configure(with data: IntradayData, date: String) {
         
-//        let string = "20:32 Wed, 30 Oct 2019"
-//        2021-04-19 20:00:00
         var dateConverted: Date = Date()
         let formatter4 = DateFormatter()
-        formatter4.dateFormat = "yyyy-MM-dd HH:mm:ss" //"HH:mm E, d MMM y"
+        formatter4.dateFormat = "yyyy-MM-dd HH:mm:ss"
         dateConverted = formatter4.date(from: date) ?? Date()
         
         var dateStringConverted = ""
@@ -39,6 +37,25 @@ class FieldTableViewCell: UITableViewCell {
         let highDouble: Double = data.high?.toDouble() ?? 0.0
         let lowDouble: Double = data.low?.toDouble() ?? 0.0
         
+        openLbl.textColor = UIColor.systemGray
+        highLbl.textColor = UIColor.systemGray
+        lowLbl.textColor = UIColor.systemGray
+        
+        if highDouble > openDouble {
+            highLbl.textColor = UIColor.green
+        }
+        
+        if lowDouble < openDouble {
+            lowLbl.textColor = UIColor.red
+        }
+        
+        if highDouble > openDouble && lowDouble >= openDouble {
+            openLbl.textColor = UIColor.green
+        }
+        
+        if highDouble <= openDouble && lowDouble < openDouble {
+            openLbl.textColor = UIColor.red
+        }
         
         dateLbl.text = dateStringConverted
         openLbl.text = String(format: "%.2f", openDouble)

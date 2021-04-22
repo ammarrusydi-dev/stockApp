@@ -11,15 +11,13 @@ import Foundation
 final class NetworkManager {
     
     var intradayData: [IntradayData] = []
-    private let domainUrlString = "https://www.alphavantage.co/query?function="
-    private let APIKEY = "O068DC2W9G7AYUG7"
     
     func fetchIntraday(symbol: String, interval: Int, outputSize: String, completionHandler: @escaping (APIData) -> Void) {
-        let url = URL(string: domainUrlString + "TIME_SERIES_INTRADAY&symbol=" + symbol + "&interval=" + "\(interval)min" + "&outputsize=" + outputSize + "&apikey=" + APIKEY)!
+        let url = URL(string: Constants.API.BaseURL + Constants.API.IntradayURL + symbol + "&interval=" + "\(interval)min" + "&outputsize=" + outputSize + "&apikey=" + Constants.API.APIKEY)!
         
         let task = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
             if let error = error {
-                print("Error with fetching films: \(error)")
+                print("Error with fetching fetchIntraday: \(error)")
                 return
             }
             
@@ -36,6 +34,29 @@ final class NetworkManager {
         })
         task.resume()
     }
+    
+    func fetchSearchResult(keyword: String, completionHandler: @escaping (SearchResult) -> Void) {
+        guard let url = URL(string: Constants.API.BaseURL + Constants.API.SearchURL + keyword + "&apikey=" + Constants.API.APIKEY) else { return  }
+           
+           let task = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+               if let error = error {
+                   print("Error with fetching fetchSearchResult: \(error)")
+                   return
+               }
+               
+               guard let httpResponse = response as? HTTPURLResponse,
+                   (200...299).contains(httpResponse.statusCode) else {
+                       print("Error with the response, unexpected status code: \(response)")
+                       return
+               }
+               
+               if let data = data,
+                let searchData = try? JSONDecoder().decode(SearchResult.self, from: data) {
+                completionHandler(searchData)
+               }
+           })
+           task.resume()
+       }
     
 //    private func fetchFilm(withID id:Int, completionHandler: @escaping (Film) -> Void) {
 //        let url = URL(string: domainUrlString + "films/\(id)")!
