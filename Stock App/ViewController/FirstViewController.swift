@@ -9,11 +9,12 @@
 import UIKit
 
 class FirstViewController: UIViewController {
-    
-    @IBOutlet weak var SearchBarView: SearchBarView!
+    @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var dateLbl: UILabel!
+    @IBOutlet weak var symbolLbl: UILabel!
     @IBOutlet weak var stockNameBtn: UIButton!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     private let cellIdentifier = "FieldTableViewCell"
     private var apiData: APIData?
@@ -21,17 +22,21 @@ class FirstViewController: UIViewController {
     var arrDate: [String] = []
     var arrStockData: [IntradayData] = []
     var interval: Int = 60
+    var symbol: String = "AAPL"
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.isHidden = true
+        self.spinner.startAnimating()
         tableView.register(UINib.init(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
+        symbolLbl.text = symbol
         fetchData()
     }
     
     // API Call
     func fetchData() {
-        NetworkManager().fetchIntraday(symbol: "AAPL", interval: interval, outputSize: "compact") { (data) in
+        NetworkManager().fetchIntraday(symbol: symbol, interval: interval, outputSize: "compact") { (data) in
             self.apiData = data
             
             self.intradayData = data.timeSeries5Min
@@ -58,19 +63,23 @@ class FirstViewController: UIViewController {
             
             if self.intradayData?.count ?? 0 > 0 {
                 for (key, value) in self.intradayData! {
-                    print("\(key) -> \(value)")
+                    //print("\(key) -> \(value)")
                     self.arrDate.append(key)
                     self.arrStockData.append(value)
                 }
             }
             DispatchQueue.main.async{
                 self.tableView.reloadData()
+                self.tableView.isHidden = false
+                self.spinner.stopAnimating()
             }
         }
     }
     
     @IBAction func searchBtnClicked(_ sender: Any) {
-        self.navigationController?.pushViewController(SearchViewController.getInstance(), animated: true)
+        let vc = SearchViewController(nibName: "SearchViewController", bundle: nil)
+        vc.searchDelegate = self
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     
@@ -98,16 +107,18 @@ extension FirstViewController: UITableViewDataSource {
 extension FirstViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        //    let category = categories[indexPath.row]
-        //    let viewController: UIViewController
-        //
-        //    switch category {
-        //    case .films: viewController = FilmsViewController()
-        //    default: viewController = FilmsViewController()
-        //    }
-        
-        //    navigationController?.pushViewController(viewController, animated: true)
     }
 }
 
+extension FirstViewController: SearchVCDelegate {
+    func searchSymbol(arrSymbol: String) {
+        print("arrSymbol: \(arrSymbol)")
+        symbolLbl.text = arrSymbol
+        symbol = arrSymbol
+        self.arrDate = []
+        self.arrStockData = []
+        self.tableView.isHidden = true
+        self.spinner.startAnimating()
+        fetchData()
+    }
+}

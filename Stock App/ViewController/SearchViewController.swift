@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol SearchVCDelegate: NSObjectProtocol {
+    func searchSymbol(arrSymbol: String)
+}
+
 class SearchViewController: UIViewController, UISearchBarDelegate {
 
     @IBOutlet weak var searchBar: UISearchBar!
@@ -15,6 +19,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     
     var arrSearchResult: [SearchData] = []
     private let cellIdentifier = "SearchTableViewCell"
+    weak var searchDelegate : SearchVCDelegate!
     
     // MARK: - Instance
        static func getInstance() -> SearchViewController {
@@ -97,23 +102,14 @@ extension SearchViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        return 60
+        return 40
     }
 }
 
 extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        //    let category = categories[indexPath.row]
-        //    let viewController: UIViewController
-        //
-        //    switch category {
-        //    case .films: viewController = FilmsViewController()
-        //    default: viewController = FilmsViewController()
-        //    }
-        
-        //    navigationController?.pushViewController(viewController, animated: true)
+        searchDelegate.searchSymbol(arrSymbol: arrSearchResult[indexPath.row].symbol ?? "")
+        self.navigationController?.popViewController(animated: true)
     }
 }
 

@@ -24,12 +24,12 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                     <subviews>
                         <searchBar contentMode="redraw" placeholder="Search symbol" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1g9-Mh-YkG">
-                            <rect key="frame" x="20" y="20" width="374" height="60"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="60" id="OjU-sM-4Fg"/>
                             </constraints>
                             <color key="tintColor" name="YellowTheme"/>
-                            <color key="barTintColor" name="BlackBackground"/>
+                            <color key="barTintColor" name="BlackTabBar"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" returnKeyType="search"/>
                             <scopeButtonTitles>
                                 <string>Title</string>
@@ -37,8 +37,9 @@
                             </scopeButtonTitles>
                         </searchBar>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OHT-Zi-eEI">
-                            <rect key="frame" x="0.0" y="80" width="414" height="772"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <rect key="frame" x="0.0" y="60" width="414" height="792"/>
+                            <color key="backgroundColor" name="BlackBackground"/>
+                            <color key="sectionIndexBackgroundColor" name="BlackBackground"/>
                             <connections>
                                 <outlet property="dataSource" destination="-1" id="zyD-zg-zrD"/>
                                 <outlet property="delegate" destination="-1" id="aDh-Af-FUp"/>
@@ -47,12 +48,12 @@
                     </subviews>
                     <color key="backgroundColor" name="BlackBackground"/>
                     <constraints>
-                        <constraint firstItem="1g9-Mh-YkG" firstAttribute="leading" secondItem="fey-WK-wUn" secondAttribute="leading" constant="20" id="6Cn-KJ-wIS"/>
+                        <constraint firstItem="1g9-Mh-YkG" firstAttribute="leading" secondItem="fey-WK-wUn" secondAttribute="leading" id="6Cn-KJ-wIS"/>
                         <constraint firstItem="OHT-Zi-eEI" firstAttribute="top" secondItem="1g9-Mh-YkG" secondAttribute="bottom" id="IMp-Rb-bKg"/>
                         <constraint firstItem="OHT-Zi-eEI" firstAttribute="leading" secondItem="fey-WK-wUn" secondAttribute="leading" id="Pfe-rl-GfR"/>
-                        <constraint firstItem="1g9-Mh-YkG" firstAttribute="top" secondItem="fey-WK-wUn" secondAttribute="top" constant="20" id="WIl-CW-rnj"/>
+                        <constraint firstItem="1g9-Mh-YkG" firstAttribute="top" secondItem="fey-WK-wUn" secondAttribute="top" id="WIl-CW-rnj"/>
                         <constraint firstAttribute="trailing" secondItem="OHT-Zi-eEI" secondAttribute="trailing" id="aM7-R1-bWQ"/>
-                        <constraint firstAttribute="trailing" secondItem="1g9-Mh-YkG" secondAttribute="trailing" constant="20" id="hfY-na-wiK"/>
+                        <constraint firstAttribute="trailing" secondItem="1g9-Mh-YkG" secondAttribute="trailing" id="hfY-na-wiK"/>
                         <constraint firstAttribute="bottom" secondItem="OHT-Zi-eEI" secondAttribute="bottom" id="y9l-uA-i4y"/>
                     </constraints>
                 </view>
@@ -71,6 +72,9 @@
     <resources>
         <namedColor name="BlackBackground">
             <color red="0.13725490196078433" green="0.13725490196078433" blue="0.13725490196078433" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="BlackTabBar">
+            <color red="0.094117647058823528" green="0.094117647058823528" blue="0.094117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="YellowTheme">
             <color red="0.97647058823529409" green="0.72156862745098038" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

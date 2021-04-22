@@ -15,6 +15,8 @@ final class NetworkManager {
     func fetchIntraday(symbol: String, interval: Int, outputSize: String, completionHandler: @escaping (APIData) -> Void) {
         let url = URL(string: Constants.API.BaseURL + Constants.API.IntradayURL + symbol + "&interval=" + "\(interval)min" + "&outputsize=" + outputSize + "&apikey=" + Constants.API.APIKEY)!
         
+        print("Fetching API: \(url)")
+        
         let task = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
             if let error = error {
                 print("Error with fetching fetchIntraday: \(error)")
