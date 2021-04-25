@@ -28,6 +28,8 @@
 		0D62421C2631DDFC00DB9FA8 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D62421B2631DDFC00DB9FA8 /* SearchModel.swift */; };
 		0D62421F2631EFE800DB9FA8 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D62421D2631EFE800DB9FA8 /* SearchTableViewCell.swift */; };
 		0D6242202631EFE800DB9FA8 /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D62421E2631EFE800DB9FA8 /* SearchTableViewCell.xib */; };
+		0DA56E6626356CDF00872781 /* MultipleSymbolCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA56E6426356CDF00872781 /* MultipleSymbolCell.swift */; };
+		0DA56E6726356CDF00872781 /* MultipleSymbolCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DA56E6526356CDF00872781 /* MultipleSymbolCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +56,8 @@
 		0D62421B2631DDFC00DB9FA8 /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		0D62421D2631EFE800DB9FA8 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		0D62421E2631EFE800DB9FA8 /* SearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchTableViewCell.xib; sourceTree = "<group>"; };
+		0DA56E6426356CDF00872781 /* MultipleSymbolCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleSymbolCell.swift; sourceTree = "<group>"; };
+		0DA56E6526356CDF00872781 /* MultipleSymbolCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MultipleSymbolCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +114,8 @@
 				0D624204262F326900DB9FA8 /* FieldTableViewCell.xib */,
 				0D62421D2631EFE800DB9FA8 /* SearchTableViewCell.swift */,
 				0D62421E2631EFE800DB9FA8 /* SearchTableViewCell.xib */,
+				0DA56E6426356CDF00872781 /* MultipleSymbolCell.swift */,
+				0DA56E6526356CDF00872781 /* MultipleSymbolCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -211,6 +217,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D624202262F2C2800DB9FA8 /* SearchBarView.xib in Resources */,
+				0DA56E6726356CDF00872781 /* MultipleSymbolCell.xib in Resources */,
 				0D624206262F326900DB9FA8 /* FieldTableViewCell.xib in Resources */,
 				0D6242182631C19B00DB9FA8 /* SearchViewController.xib in Resources */,
 				0D6241F12627440D00DB9FA8 /* LaunchScreen.storyboard in Resources */,
@@ -239,6 +246,7 @@
 				0D6241E32627440B00DB9FA8 /* AppDelegate.swift in Sources */,
 				0D6241E52627440B00DB9FA8 /* SceneDelegate.swift in Sources */,
 				0D62421026307E4800DB9FA8 /* Color.swift in Sources */,
+				0DA56E6626356CDF00872781 /* MultipleSymbolCell.swift in Sources */,
 				0D62421A2631C6AA00DB9FA8 /* Constants.swift in Sources */,
 				0D62421F2631EFE800DB9FA8 /* SearchTableViewCell.swift in Sources */,
 			);

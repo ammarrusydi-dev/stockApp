@@ -17,6 +17,7 @@ struct Constants {
         static let APIKEY = "O068DC2W9G7AYUG7"
         static let BaseURL = "https://www.alphavantage.co/query?function="
         static let IntradayURL = "TIME_SERIES_INTRADAY&symbol="
+        static let DailyAdjusted = "TIME_SERIES_DAILY_ADJUSTED&symbol="
         static let SearchURL = "SYMBOL_SEARCH&keywords="
         
     }

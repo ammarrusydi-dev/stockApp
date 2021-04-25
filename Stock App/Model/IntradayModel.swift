@@ -13,19 +13,19 @@ struct APIData: Codable {
     var metaData: MetaData?
     var timeSeries1Min: [String: IntradayData]?
     var timeSeries5Min: [String: IntradayData]?
-    var timeSeries10Min: [String: IntradayData]?
     var timeSeries15Min: [String: IntradayData]?
     var timeSeries30Min: [String: IntradayData]?
     var timeSeries60Min: [String: IntradayData]?
+    var timeSeriesDaily: [String: IntradayData]?
 
     enum CodingKeys: String, CodingKey {
         case metaData = "Meta Data"
         case timeSeries1Min = "Time Series (1min)"
         case timeSeries5Min = "Time Series (5min)"
-        case timeSeries10Min = "Time Series (10min)"
         case timeSeries15Min = "Time Series (15min)"
         case timeSeries30Min = "Time Series (30min)"
         case timeSeries60Min = "Time Series (60min)"
+        case timeSeriesDaily = "Time Series (Daily)"
     }
 }
 
@@ -46,6 +46,7 @@ struct MetaData: Codable {
 // MARK: - TimeSeries5Min
 struct IntradayData: Codable {
     var open, high, low, volume, close: String?
+    var date: String? = ""
 
     enum CodingKeys: String, CodingKey {
         case open = "1. open"
@@ -53,5 +54,6 @@ struct IntradayData: Codable {
         case low = "3. low"
         case close = "4. close"
         case volume = "5. volume"
+//        case date
     }
 }

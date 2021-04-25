@@ -20,7 +20,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <searchBar contentMode="redraw" placeholder="Search symbol" showsSearchResultsButton="YES" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hyH-A3-Vo5">
-                    <rect key="frame" x="0.0" y="48" width="532" height="60"/>
+                    <rect key="frame" x="0.0" y="47.5" width="532" height="60"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="Vhx-Be-5eo"/>
                     </constraints>

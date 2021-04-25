@@ -21,7 +21,7 @@ class FirstViewController: UIViewController {
     var intradayData: [String: IntradayData]? = [:]
     var arrDate: [String] = []
     var arrStockData: [IntradayData] = []
-    var interval: Int = 60
+    var interval: Int = 15
     var symbol: String = "AAPL"
     
     
@@ -47,9 +47,6 @@ class FirstViewController: UIViewController {
             else if self.interval == 5 {
                 self.intradayData = data.timeSeries5Min
             }
-            else if self.interval == 10 {
-                self.intradayData = data.timeSeries10Min
-            }
             else if self.interval == 15 {
                 self.intradayData = data.timeSeries15Min
             }
@@ -63,12 +60,23 @@ class FirstViewController: UIViewController {
             
             if self.intradayData?.count ?? 0 > 0 {
                 for (key, value) in self.intradayData! {
-                    //print("\(key) -> \(value)")
                     self.arrDate.append(key)
                     self.arrStockData.append(value)
                 }
+                for i in 0...self.arrStockData.count - 1 {
+                    self.arrStockData[i].date = self.arrDate[i]
+                }
             }
+            
+           
+            
             DispatchQueue.main.async{
+                guard !self.arrStockData.isEmpty else {
+                    print("Re-fetching API again~~")
+                    print("self.intradayData data: \(String(describing: self.intradayData))")
+                    self.spinner.stopAnimating()
+                    return
+                }
                 self.tableView.reloadData()
                 self.tableView.isHidden = false
                 self.spinner.stopAnimating()
@@ -94,7 +102,7 @@ extension FirstViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? FieldTableViewCell else {
             fatalError("Issue with dequeuing \(cellIdentifier)")
         }
-        cell.configure(with : arrStockData[indexPath.row], date: self.arrDate[indexPath.row])
+        cell.configure(with : arrStockData[indexPath.row], date: self.arrStockData[indexPath.row].date ?? "")
         return cell
     }
     
@@ -111,10 +119,14 @@ extension FirstViewController: UITableViewDelegate {
 }
 
 extension FirstViewController: SearchVCDelegate {
-    func searchSymbol(arrSymbol: String) {
-        print("arrSymbol: \(arrSymbol)")
-        symbolLbl.text = arrSymbol
-        symbol = arrSymbol
+    func searchArrSymbol(arrSymbol: [String]) {
+        
+    }
+    
+    func searchSymbol(symbol: String) {
+        print("arrSymbol: \(symbol)")
+        symbolLbl.text = symbol
+        self.symbol = symbol
         self.arrDate = []
         self.arrStockData = []
         self.tableView.isHidden = true

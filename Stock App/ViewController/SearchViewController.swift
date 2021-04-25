@@ -9,7 +9,8 @@
 import UIKit
 
 protocol SearchVCDelegate: NSObjectProtocol {
-    func searchSymbol(arrSymbol: String)
+    func searchSymbol(symbol: String)
+    func searchArrSymbol(arrSymbol: [String])
 }
 
 class SearchViewController: UIViewController, UISearchBarDelegate {
@@ -56,22 +57,25 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         let text = searchBar.text
+        arrSearchResult.removeAll()
         fetchAPICalls(text: text ?? "")
         print("text: \(text ?? "")")
     }
     
     func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-           let textSearch = searchBar.text ?? ""
-           fetchAPICalls(text: textSearch + text )
-           print("text: \(textSearch + text )")
-           print("replacementText: \(text )")
-           return true
-       }
+        let textSearch = searchBar.text ?? ""
+        arrSearchResult.removeAll()
+        fetchAPICalls(text: textSearch + text )
+        print("text: \(textSearch + text )")
+        print("replacementText: \(text )")
+        return true
+    }
 }
 
 // API Call
 extension SearchViewController {
     func fetchAPICalls(text: String) {
+        arrSearchResult.removeAll()
         NetworkManager().fetchSearchResult(keyword: text) { (data) in
             
             guard let result = data.bestMatches else {
@@ -80,7 +84,7 @@ extension SearchViewController {
             
             self.arrSearchResult = result
             
-            DispatchQueue.main.async{
+            DispatchQueue.main.async{                
                 self.tblView.reloadData()
             }
         }
@@ -96,7 +100,12 @@ extension SearchViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? SearchTableViewCell else {
             fatalError("Issue with dequeuing \(cellIdentifier)")
         }
-        cell.configure(with : arrSearchResult[indexPath.row].symbol ?? "")
+        
+        let symbol = arrSearchResult[indexPath.row].symbol
+//        guard let symbol = arrSearchResult[indexPath.row].symbol else {
+//            return cell
+//        }
+        cell.configure(with : symbol ?? "")
         return cell
     }
     
@@ -108,7 +117,7 @@ extension SearchViewController: UITableViewDataSource {
 
 extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        searchDelegate.searchSymbol(arrSymbol: arrSearchResult[indexPath.row].symbol ?? "")
+        searchDelegate.searchSymbol(symbol: arrSearchResult[indexPath.row].symbol ?? "")
         self.navigationController?.popViewController(animated: true)
     }
 }
