@@ -10,6 +10,8 @@ import UIKit
 
 class MultipleSymbolCell: UITableViewCell {
     
+    
+    @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var dateLbl: UILabel!
     @IBOutlet weak var symbolLbl: UILabel!
     @IBOutlet weak var openLbl: UILabel!
@@ -24,16 +26,17 @@ class MultipleSymbolCell: UITableViewCell {
         // Initialization code
     }
     
-    func configure(with data: IntradayData, date: String, symbol: String) {
+//    func configure(with data: IntradayData, date: String, symbol: String) {
+    func configure(with data: IntradayData) {
         
         var dateConverted: Date = Date()
         let formatter4 = DateFormatter()
-        formatter4.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        dateConverted = formatter4.date(from: date) ?? Date()
+        formatter4.dateFormat = "yyyy-MM-dd"
+        dateConverted = formatter4.date(from: data.date ?? "") ?? Date()
         
         var dateStringConverted = ""
         let formatter2 = DateFormatter()
-        formatter2.dateFormat = "d MM y"
+        formatter2.dateFormat = "d-MM-y"
         dateStringConverted = formatter2.string(from: dateConverted)
         
         let openDouble: Double = data.open?.toDouble() ?? 0.0
@@ -60,7 +63,7 @@ class MultipleSymbolCell: UITableViewCell {
             openLbl.textColor = UIColor.red
         }
         
-        symbolLbl.text = symbol
+        symbolLbl.text = data.symbol
         dateLbl.text = dateStringConverted
         openLbl.text = String(format: "%.2f", openDouble)
         highLbl.text = String(format: "%.2f", highDouble)

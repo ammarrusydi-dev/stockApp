@@ -46,7 +46,7 @@ struct MetaData: Codable {
 // MARK: - TimeSeries5Min
 struct IntradayData: Codable {
     var open, high, low, volume, close: String?
-    var date: String? = ""
+    var date, symbol: String?
 
     enum CodingKeys: String, CodingKey {
         case open = "1. open"

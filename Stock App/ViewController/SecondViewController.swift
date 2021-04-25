@@ -20,21 +20,34 @@ class SecondViewController: UIViewController {
     private var apiData: APIData?
     var intradayData: [String: IntradayData]? = [:]
     var arrDate: [String] = []
-    var arrStockData1: [IntradayData] = []
-    var arrStockData2: [IntradayData] = []
-    var arrStockData3: [IntradayData] = []
+    var arrSymbol: [String] = []
+    var arrStockData: [IntradayData] = []
     var arrStockAll : [[IntradayData]] = []
     var interval: Int = 15
-    var symbol: [String] = ["AAPL", "IBM", "IBMO"]
+    var symbol: [String] = ["AAPL", "IBM", "TSLA"]
     var isDoneFetchingAPI : Bool = false
     
+    struct Objects {
+        var sectionName : String = ""
+        var sectionObjects : [IntradayData] = []
+    }
+
+    var objectArray = [Objects]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.isHidden = true
         self.spinner.startAnimating()
         tableView.register(UINib.init(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
-        symbolLbl.text = symbol[0] //+ ", " + symbol[1] + ", " + symbol[2]
+        let symbolTxt = symbol.joined(separator: ", ")
+        symbolLbl.text = symbolTxt
+        dateLbl.text = "Symbol"
+        self.title = "Second Screen"
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Refresh", style: .plain, target: self, action: #selector(refreshBtnTapped))
+        callAPI(arrSymbol: symbol)
+    }
+    
+    @objc func refreshBtnTapped() {
         callAPI(arrSymbol: symbol)
     }
     
@@ -54,41 +67,29 @@ class SecondViewController: UIViewController {
         NetworkManager().fetchDailyAdjusted(symbol: symbol) { (data) in
             self.apiData = data
             
-//            print("data: \(data)")
             self.intradayData = data.timeSeriesDaily
             
             if self.intradayData?.count ?? 0 > 0 {
                 for (key, value) in self.intradayData! {
-//                    print("\(key) -> \(value)")
                     self.arrDate.append(key)
-                    if index == 0 {
-                        self.arrStockData1.append(value)
-                    }
-                    else if index == 1 {
-                        self.arrStockData2.append(value)
-                    }
-                    else if index == 2 {
-                        self.arrStockData3.append(value)
-                    }
+                    self.arrStockData.append(value)
+                    self.arrSymbol.append(data.metaData?.symbol ?? "")
                 }
-                for i in 0...self.arrStockData1.count - 1 {
-                    self.arrStockData1[i].date = self.arrDate[i]
+                for i in 0...self.arrStockData.count - 1 {
+                    self.arrStockData[i].date = self.arrDate[i]
+                    self.arrStockData[i].symbol = self.arrSymbol[i]
                 }
-                for i in 0...self.arrStockData2.count - 1 {
-                    self.arrStockData2[i].date = self.arrDate[i]
-                }
-                for i in 0...self.arrStockData3.count - 1 {
-                    self.arrStockData3[i].date = self.arrDate[i]
-                }
-                print("arrStockData1.count: \(self.arrStockData1.count)")
-                print("arrStockData2.count: \(self.arrStockData2.count)")
-                print("arrStockData3.count: \(self.arrStockData3.count)")
+
             }
             if self.isDoneFetchingAPI {
+                let dictionary = Dictionary(grouping: self.arrStockData, by: { (element: IntradayData) in
+                    return element.date
+                })
                 
-                
-                
-                self.arrStockAll = [self.arrStockData1, self.arrStockData2, self.arrStockData3]
+                for (key, value) in dictionary {
+                    self.objectArray.append(Objects(sectionName: key ?? "", sectionObjects: value))
+                }
+                                              
                 DispatchQueue.main.async{
                     self.tableView.reloadData()
                     self.tableView.isHidden = false
@@ -102,6 +103,7 @@ class SecondViewController: UIViewController {
     @IBAction func searchBtnClicked(_ sender: Any) {
         let vc = SearchViewController(nibName: "SearchViewController", bundle: nil)
         vc.searchDelegate = self
+        vc.isFromFirsVC = false
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -110,12 +112,31 @@ class SecondViewController: UIViewController {
 
 extension SecondViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-     print("numberOfSections: \(self.arrStockAll.count)")
-        return self.arrStockAll.count
+     print("numberOfSections: \(self.objectArray.count)")
+        return self.objectArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 50))
+        
+        let label = UILabel()
+        label.frame = CGRect.init(x: 5, y: 5, width: headerView.frame.width-10, height: headerView.frame.height-10)
+        label.text = objectArray[section].sectionName
+        label.font = .systemFont(ofSize: 20)
+        label.textColor = .systemGray
+        headerView.backgroundColor = .black
+        
+        headerView.addSubview(label)
+        
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.arrStockAll[section].count //self.symbol.count //+ self.arrStockData2.count + self.arrStockData3.count //intradayData?.count ?? 0
+        return self.objectArray[section].sectionObjects.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -123,15 +144,15 @@ extension SecondViewController: UITableViewDataSource {
             fatalError("Issue with dequeuing \(cellIdentifier)")
         }
         
-        let data =  arrStockAll[indexPath.section][indexPath.row]
-        cell.configure(with : data, date: self.arrDate[indexPath.row], symbol: symbol[indexPath.section])
+        let data =  objectArray[indexPath.section].sectionObjects[indexPath.row]
+        cell.configure(with : data)
                 
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        return 60
+        return 40
     }
 }
 
@@ -143,23 +164,23 @@ extension SecondViewController: UITableViewDelegate {
 
 extension SecondViewController: SearchVCDelegate {
     func searchArrSymbol(arrSymbol: [String]) {
-        print("arrSymbol: \(symbol)")
-//        symbolLbl.text = symbol
+//        print("arrSymbol: \(symbol)")
+        let symbolTxt = arrSymbol.joined(separator: ", ")
+        symbolLbl.text = symbolTxt
         self.symbol = arrSymbol
         self.arrDate = []
-        self.arrStockData1 = []
-        self.arrStockData2 = []
-        self.arrStockData3 = []
+        self.arrStockData = []
+        self.objectArray = []
+        self.arrSymbol = []
         self.tableView.isHidden = true
         self.spinner.startAnimating()
         
-        var index: Int = 0
-        for data in arrSymbol {
-            fetchData(symbol: data, index: index)
-            index += 1
-        }
-        
-
+        self.callAPI(arrSymbol: arrSymbol)        
+//        var index: Int = 0
+//        for data in arrSymbol {
+//            fetchData(symbol: data, index: index)
+//            index += 1
+//        }
     }
     
     func searchSymbol(symbol: String) {

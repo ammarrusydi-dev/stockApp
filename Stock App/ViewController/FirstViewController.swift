@@ -87,6 +87,7 @@ class FirstViewController: UIViewController {
     @IBAction func searchBtnClicked(_ sender: Any) {
         let vc = SearchViewController(nibName: "SearchViewController", bundle: nil)
         vc.searchDelegate = self
+        vc.isFromFirsVC = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

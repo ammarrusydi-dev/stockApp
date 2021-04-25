@@ -195,7 +195,7 @@
             </objects>
             <point key="canvasLocation" x="1472" y="0.0"/>
         </scene>
-        <!--Second-->
+        <!--Second View-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
                 <viewController id="8rJ-Kc-sve" customClass="SecondViewController" customModule="Stock_App" customModuleProvider="target" sceneMemberID="viewController">
@@ -209,17 +209,17 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FCm-NH-ngB">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bcQ-CX-tQ7">
-                                                <rect key="frame" x="10" y="10" width="394" height="40"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="bcQ-CX-tQ7">
+                                                <rect key="frame" x="70" y="10" width="274" height="40"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                                 <color key="textColor" name="YellowTheme"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="MCm-QN-hyS">
-                                                <rect key="frame" x="344" y="12.5" width="50" height="34.5"/>
+                                                <rect key="frame" x="354" y="12.5" width="40" height="34.5"/>
                                                 <color key="tintColor" name="YellowTheme"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="50" id="ZKv-eB-gYz"/>
+                                                    <constraint firstAttribute="width" constant="40" id="ZKv-eB-gYz"/>
                                                 </constraints>
                                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                                             </imageView>
@@ -239,14 +239,14 @@
                                         <constraints>
                                             <constraint firstItem="bcQ-CX-tQ7" firstAttribute="top" secondItem="FCm-NH-ngB" secondAttribute="top" constant="10" id="0oX-0V-XAy"/>
                                             <constraint firstAttribute="bottom" secondItem="Gdo-1a-JFi" secondAttribute="bottom" id="143-k3-0Ea"/>
-                                            <constraint firstAttribute="trailing" secondItem="bcQ-CX-tQ7" secondAttribute="trailing" constant="10" id="2GB-ah-Mf5"/>
+                                            <constraint firstAttribute="trailing" secondItem="bcQ-CX-tQ7" secondAttribute="trailing" constant="70" id="2GB-ah-Mf5"/>
                                             <constraint firstAttribute="trailing" secondItem="MCm-QN-hyS" secondAttribute="trailing" constant="20" id="5E1-CX-xPr"/>
                                             <constraint firstAttribute="bottom" secondItem="MCm-QN-hyS" secondAttribute="bottom" constant="10" id="7fw-xG-qo2"/>
                                             <constraint firstAttribute="height" constant="60" id="FRp-AF-UuM"/>
                                             <constraint firstAttribute="bottom" secondItem="bcQ-CX-tQ7" secondAttribute="bottom" constant="10" id="JJc-IL-4XW"/>
                                             <constraint firstItem="MCm-QN-hyS" firstAttribute="top" secondItem="FCm-NH-ngB" secondAttribute="top" constant="10" id="JkS-W1-vV2"/>
                                             <constraint firstItem="Gdo-1a-JFi" firstAttribute="leading" secondItem="FCm-NH-ngB" secondAttribute="leading" id="LSK-ER-4Vj"/>
-                                            <constraint firstItem="bcQ-CX-tQ7" firstAttribute="leading" secondItem="FCm-NH-ngB" secondAttribute="leading" constant="10" id="Ma3-hL-SRA"/>
+                                            <constraint firstItem="bcQ-CX-tQ7" firstAttribute="leading" secondItem="FCm-NH-ngB" secondAttribute="leading" constant="70" id="Ma3-hL-SRA"/>
                                             <constraint firstItem="Gdo-1a-JFi" firstAttribute="top" secondItem="FCm-NH-ngB" secondAttribute="top" id="X7i-C2-gfR"/>
                                             <constraint firstAttribute="trailing" secondItem="Gdo-1a-JFi" secondAttribute="trailing" id="gKF-Dv-4eN"/>
                                         </constraints>
@@ -331,6 +331,7 @@
                     <tabBarItem key="tabBarItem" title="Second" image="person.2.fill" catalog="system" id="cPa-gy-q4n">
                         <color key="badgeColor" name="YellowTheme"/>
                     </tabBarItem>
+                    <navigationItem key="navigationItem" title="Second View" id="Cjy-FL-IMa"/>
                     <connections>
                         <outlet property="dateLbl" destination="Czz-p3-6AT" id="cOF-CV-Uqf"/>
                         <outlet property="mainView" destination="i6k-5s-bKE" id="fPI-rz-mPt"/>

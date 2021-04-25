@@ -21,6 +21,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     var arrSearchResult: [SearchData] = []
     private let cellIdentifier = "SearchTableViewCell"
     weak var searchDelegate : SearchVCDelegate!
+    var isFromFirsVC : Bool = false
+    var arrSymbol: [String] = []
     
     // MARK: - Instance
        static func getInstance() -> SearchViewController {
@@ -41,6 +43,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         
         searchBar.delegate = self
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneBtnTapped))
+        
         if let textfield = searchBar.value(forKey: "searchField") as? UITextField {
             
             textfield.backgroundColor = UIColor.RTBGrey
@@ -49,6 +53,12 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
             textfield.textColor = UIColor.RTBTextGrey
             
         }
+    }
+    
+    @objc func doneBtnTapped() {
+        searchDelegate.searchArrSymbol(arrSymbol: arrSymbol)
+        self.navigationController?.popViewController(animated: true)
+        print("DONNEEE")
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -117,8 +127,15 @@ extension SearchViewController: UITableViewDataSource {
 
 extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        searchDelegate.searchSymbol(symbol: arrSearchResult[indexPath.row].symbol ?? "")
-        self.navigationController?.popViewController(animated: true)
+        if isFromFirsVC {
+            searchDelegate.searchSymbol(symbol: arrSearchResult[indexPath.row].symbol ?? "")
+            self.navigationController?.popViewController(animated: true)
+            isFromFirsVC = false
+        }
+        else {
+            arrSymbol.append(arrSearchResult[indexPath.row].symbol ?? "")
+            print(arrSearchResult[indexPath.row].symbol ?? "")
+        }
     }
 }
 
