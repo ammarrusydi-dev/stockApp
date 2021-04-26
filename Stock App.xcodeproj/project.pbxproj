@@ -30,6 +30,7 @@
 		0D6242202631EFE800DB9FA8 /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D62421E2631EFE800DB9FA8 /* SearchTableViewCell.xib */; };
 		0DA56E6626356CDF00872781 /* MultipleSymbolCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA56E6426356CDF00872781 /* MultipleSymbolCell.swift */; };
 		0DA56E6726356CDF00872781 /* MultipleSymbolCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DA56E6526356CDF00872781 /* MultipleSymbolCell.xib */; };
+		0DA56E6A2637092400872781 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA56E692637092400872781 /* ThirdViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		0D62421E2631EFE800DB9FA8 /* SearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchTableViewCell.xib; sourceTree = "<group>"; };
 		0DA56E6426356CDF00872781 /* MultipleSymbolCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleSymbolCell.swift; sourceTree = "<group>"; };
 		0DA56E6526356CDF00872781 /* MultipleSymbolCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MultipleSymbolCell.xib; sourceTree = "<group>"; };
+		0DA56E692637092400872781 /* ThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,8 +144,8 @@
 			children = (
 				0D6241E62627440B00DB9FA8 /* FirstViewController.swift */,
 				0D6241E82627440B00DB9FA8 /* SecondViewController.swift */,
-				0D6242152631C19B00DB9FA8 /* SearchViewController.swift */,
-				0D6242162631C19B00DB9FA8 /* SearchViewController.xib */,
+				0DA56E692637092400872781 /* ThirdViewController.swift */,
+				0DA56E68263708FB00872781 /* SearchViewController */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -156,6 +158,15 @@
 				0D624211263086A600DB9FA8 /* Extension.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		0DA56E68263708FB00872781 /* SearchViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0D6242152631C19B00DB9FA8 /* SearchViewController.swift */,
+				0D6242162631C19B00DB9FA8 /* SearchViewController.xib */,
+			);
+			path = SearchViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -248,6 +259,7 @@
 				0D62421026307E4800DB9FA8 /* Color.swift in Sources */,
 				0DA56E6626356CDF00872781 /* MultipleSymbolCell.swift in Sources */,
 				0D62421A2631C6AA00DB9FA8 /* Constants.swift in Sources */,
+				0DA56E6A2637092400872781 /* ThirdViewController.swift in Sources */,
 				0D62421F2631EFE800DB9FA8 /* SearchTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

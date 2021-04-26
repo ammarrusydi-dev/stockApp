@@ -1,14 +1,14 @@
 //
-//  SecondViewController.swift
+//  ThirdViewController.swift
 //  Stock App
 //
-//  Created by Massive Infinity on 14/4/21.
+//  Created by Massive Infinity on 26/4/21.
 //  Copyright © 2021 ammar. All rights reserved.
 //
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class ThirdViewController: UIViewController {
     
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var tableView: UITableView!
@@ -31,7 +31,7 @@ class SecondViewController: UIViewController {
         var sectionName : String = ""
         var sectionObjects : [IntradayData] = []
     }
-
+    
     var objectArray = [Objects]()
     let apiCallGroup = DispatchGroup()
     
@@ -43,16 +43,14 @@ class SecondViewController: UIViewController {
         let symbolTxt = symbol.joined(separator: ", ")
         symbolLbl.text = symbolTxt
         dateLbl.text = "Symbol"
-        self.title = "Second Screen"
+        self.title = "Third Screen"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Refresh", style: .plain, target: self, action: #selector(refreshBtnTapped))
+        self.clearData()
         callAPI(arrSymbol: symbol)
     }
     
     @objc func refreshBtnTapped() {
-        self.arrDate = []
-        self.arrStockData = []
-        self.objectArray = []
-        self.arrSymbol = []
+        self.clearData()
         self.tableView.isHidden = true
         self.spinner.startAnimating()
         callAPI(arrSymbol: symbol)
@@ -60,7 +58,7 @@ class SecondViewController: UIViewController {
     
     func callAPI(arrSymbol: [String]) {
         for data in arrSymbol {
-            apiCallGroup.enter()
+            self.apiCallGroup.enter()
             self.fetchData(symbol: data)
         }
         
@@ -80,12 +78,35 @@ class SecondViewController: UIViewController {
         }
     }
     
+    func clearData() {
+           self.arrDate = []
+           self.arrStockData = []
+           self.objectArray = []
+           self.arrSymbol = []
+       }
+    
     // API Call
     func fetchData(symbol: String) {
-        NetworkManager().fetchDailyAdjusted(symbol: symbol) { (data) in
+        NetworkManager().fetchIntraday(symbol: symbol, interval: interval, outputSize: "compact") { (data) in
             self.apiData = data
             
-            self.intradayData = data.timeSeriesDaily
+            self.intradayData = data.timeSeries15Min
+            
+            if self.interval == 1 {
+                self.intradayData = data.timeSeries1Min
+            }
+            else if self.interval == 5 {
+                self.intradayData = data.timeSeries5Min
+            }
+            else if self.interval == 15 {
+                self.intradayData = data.timeSeries15Min
+            }
+            else if self.interval == 30 {
+                self.intradayData = data.timeSeries30Min
+            }
+            else if self.interval == 60 {
+                self.intradayData = data.timeSeries60Min
+            }
             
             if self.intradayData?.count ?? 0 > 0 {
                 for (key, value) in self.intradayData! {
@@ -97,27 +118,13 @@ class SecondViewController: UIViewController {
                     self.arrStockData[i].date = self.arrDate[i]
                     self.arrStockData[i].symbol = self.arrSymbol[i]
                 }
-
+                
             }
             DispatchQueue.main.async{
                 self.apiCallGroup.leave()
             }
+            
         }
-    }
-    
-    func sortByDate() {
-        let sortedArray = self.objectArray.sorted(by: { (img0: Objects , img1: Objects) -> Bool in
-            var dateConverted1: Date = Date()
-            var dateConverted2: Date = Date()
-            let formatter4 = DateFormatter()
-            formatter4.dateFormat = "yyyy-MM-dd"
-            
-            dateConverted1 = formatter4.date(from: img0.sectionName) ?? Date()
-            dateConverted2 = formatter4.date(from: img1.sectionName) ?? Date()
-            
-            return dateConverted1 > dateConverted2
-        })
-        self.objectArray = sortedArray
     }
     
     @IBAction func searchBtnClicked(_ sender: Any) {
@@ -130,9 +137,9 @@ class SecondViewController: UIViewController {
     
 }
 
-extension SecondViewController: UITableViewDataSource {
+extension ThirdViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-     print("numberOfSections: \(self.objectArray.count)")
+        print("numberOfSections: \(self.objectArray.count)")
         return self.objectArray.count
     }
     
@@ -166,7 +173,7 @@ extension SecondViewController: UITableViewDataSource {
         
         let data =  objectArray[indexPath.section].sectionObjects[indexPath.row]
         cell.configure(with : data)
-                
+        
         return cell
     }
     
@@ -176,13 +183,13 @@ extension SecondViewController: UITableViewDataSource {
     }
 }
 
-extension SecondViewController: UITableViewDelegate {
+extension ThirdViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
-extension SecondViewController: SearchVCDelegate {
+extension ThirdViewController: SearchVCDelegate {
     func searchArrSymbol(arrSymbol: [String]) {
         guard !arrSymbol.isEmpty else {
             return
@@ -190,10 +197,7 @@ extension SecondViewController: SearchVCDelegate {
         let symbolTxt = arrSymbol.joined(separator: ", ")
         symbolLbl.text = symbolTxt
         self.symbol = arrSymbol
-        self.arrDate = []
-        self.arrStockData = []
-        self.objectArray = []
-        self.arrSymbol = []
+        self.clearData()
         self.tableView.isHidden = true
         self.spinner.startAnimating()
         
@@ -201,5 +205,66 @@ extension SecondViewController: SearchVCDelegate {
     }
     
     func searchSymbol(symbol: String) {
+    }
+}
+
+// Sorting function
+extension ThirdViewController {
+    
+    func sortByDate() {
+        let sortedArray = self.objectArray.sorted(by: { (img0: Objects , img1: Objects) -> Bool in
+            var dateConverted1: Date = Date()
+            var dateConverted2: Date = Date()
+            let formatter4 = DateFormatter()
+            formatter4.dateFormat = "yyyy-MM-dd HH:mm:ss" //2021-04-23 20:00:00
+            
+            dateConverted1 = formatter4.date(from: img0.sectionName) ?? Date()
+            dateConverted2 = formatter4.date(from: img1.sectionName) ?? Date()
+            
+            return dateConverted1 > dateConverted2
+        })
+        self.objectArray = sortedArray
+    }
+    
+    func sortByOpen() {
+        self.objectArray = self.objectArray.sorted(by: { (img0: Objects , img1: Objects) -> Bool in
+            for (data, data2) in zip(img0.sectionObjects, img1.sectionObjects) {
+                if Int(data.open?.toDouble() ?? 0) > Int(data2.open?.toDouble() ?? 0) {
+                    return true
+                }
+                else {
+                    return false
+                }
+            }
+            return false
+        })
+    }
+    
+    func sortByHigh() {
+        self.objectArray = self.objectArray.sorted(by: { (img0: Objects , img1: Objects) -> Bool in
+            for (data, data2) in zip(img0.sectionObjects, img1.sectionObjects) {
+                if Int(data.high?.toDouble() ?? 0) > Int(data2.high?.toDouble() ?? 0) {
+                    return true
+                }
+                else {
+                    return false
+                }
+            }
+            return false
+        })
+    }
+    
+    func sortByLow() {
+        self.objectArray = self.objectArray.sorted(by: { (img0: Objects , img1: Objects) -> Bool in
+            for (data, data2) in zip(img0.sectionObjects, img1.sectionObjects) {
+                if Int(data.low?.toDouble() ?? 0) > Int(data2.open?.toDouble() ?? 0) {
+                    return true
+                }
+                else {
+                    return false
+                }
+            }
+            return false
+        })
     }
 }
