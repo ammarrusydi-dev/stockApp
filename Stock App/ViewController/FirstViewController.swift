@@ -31,6 +31,16 @@ class FirstViewController: UIViewController {
         self.spinner.startAnimating()
         tableView.register(UINib.init(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
         symbolLbl.text = symbol
+        self.title = "First Screen"
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Refresh", style: .plain, target: self, action: #selector(refreshBtnTapped))
+        fetchData()
+    }
+    
+    @objc func refreshBtnTapped() {
+        self.arrDate = []
+        self.arrStockData = []
+        self.tableView.isHidden = true
+        self.spinner.startAnimating()
         fetchData()
     }
     

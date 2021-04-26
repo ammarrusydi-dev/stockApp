@@ -17,6 +17,10 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tblView: UITableView!
+    @IBOutlet weak var symbol1: UILabel!
+    @IBOutlet weak var symbol2: UILabel!
+    @IBOutlet weak var symbol3: UILabel!
+    @IBOutlet weak var symbolStackView: UIStackView!
     
     var arrSearchResult: [SearchData] = []
     private let cellIdentifier = "SearchTableViewCell"
@@ -44,6 +48,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         searchBar.delegate = self
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneBtnTapped))
+        
+        symbolStackView.isHidden = true
         
         if let textfield = searchBar.value(forKey: "searchField") as? UITextField {
             
@@ -133,7 +139,24 @@ extension SearchViewController: UITableViewDelegate {
             isFromFirsVC = false
         }
         else {
-            arrSymbol.append(arrSearchResult[indexPath.row].symbol ?? "")
+            guard arrSymbol.count < 3 else {
+                return
+            }
+            let selectedSymbol = arrSearchResult[indexPath.row].symbol ?? ""
+            arrSymbol.append(selectedSymbol)
+            symbolStackView.isHidden = false
+            if symbol1.text == "" {
+                symbol1.text = selectedSymbol
+                symbol1.isHidden = false
+            }
+            else if symbol2.text == "" {
+                symbol2.text = selectedSymbol
+                symbol2.isHidden = false
+            }
+            else if symbol3.text == "" {
+                symbol3.text = selectedSymbol
+                symbol3.isHidden = false
+            }
             print(arrSearchResult[indexPath.row].symbol ?? "")
         }
     }

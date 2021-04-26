@@ -11,6 +11,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchViewController" customModule="Stock_App" customModuleProvider="target">
             <connections>
                 <outlet property="searchBar" destination="1g9-Mh-YkG" id="VwU-ra-qk9"/>
+                <outlet property="symbol1" destination="kZy-vf-xsR" id="jaH-ra-z9S"/>
+                <outlet property="symbol2" destination="BkN-ZQ-1FF" id="RJH-xD-VSN"/>
+                <outlet property="symbol3" destination="aKk-Yb-ofC" id="guS-iD-neb"/>
+                <outlet property="symbolStackView" destination="ni8-gG-4yh" id="EgG-d1-cCa"/>
                 <outlet property="tblView" destination="OHT-Zi-eEI" id="bvR-kw-eot"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -36,25 +40,58 @@
                                 <string>Title</string>
                             </scopeButtonTitles>
                         </searchBar>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OHT-Zi-eEI">
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="QFJ-Xa-5mM">
                             <rect key="frame" x="0.0" y="60" width="414" height="792"/>
-                            <color key="backgroundColor" name="BlackBackground"/>
-                            <color key="sectionIndexBackgroundColor" name="BlackBackground"/>
-                            <connections>
-                                <outlet property="dataSource" destination="-1" id="zyD-zg-zrD"/>
-                                <outlet property="delegate" destination="-1" id="aDh-Af-FUp"/>
-                            </connections>
-                        </tableView>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ni8-gG-4yh">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kZy-vf-xsR">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                            <color key="textColor" name="YellowTheme"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BkN-ZQ-1FF">
+                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="60"/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                            <color key="textColor" name="YellowTheme"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aKk-Yb-ofC">
+                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="60"/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                            <color key="textColor" name="YellowTheme"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" name="BlackTabBar"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="60" id="loV-vc-lTH"/>
+                                    </constraints>
+                                </stackView>
+                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OHT-Zi-eEI">
+                                    <rect key="frame" x="0.0" y="60" width="414" height="732"/>
+                                    <color key="backgroundColor" name="BlackBackground"/>
+                                    <color key="sectionIndexBackgroundColor" name="BlackBackground"/>
+                                    <connections>
+                                        <outlet property="dataSource" destination="-1" id="zyD-zg-zrD"/>
+                                        <outlet property="delegate" destination="-1" id="aDh-Af-FUp"/>
+                                    </connections>
+                                </tableView>
+                            </subviews>
+                            <color key="backgroundColor" name="BlackTabBar"/>
+                        </stackView>
                     </subviews>
                     <color key="backgroundColor" name="BlackBackground"/>
                     <constraints>
                         <constraint firstItem="1g9-Mh-YkG" firstAttribute="leading" secondItem="fey-WK-wUn" secondAttribute="leading" id="6Cn-KJ-wIS"/>
-                        <constraint firstItem="OHT-Zi-eEI" firstAttribute="top" secondItem="1g9-Mh-YkG" secondAttribute="bottom" id="IMp-Rb-bKg"/>
-                        <constraint firstItem="OHT-Zi-eEI" firstAttribute="leading" secondItem="fey-WK-wUn" secondAttribute="leading" id="Pfe-rl-GfR"/>
+                        <constraint firstItem="QFJ-Xa-5mM" firstAttribute="leading" secondItem="fey-WK-wUn" secondAttribute="leading" id="8mF-Sw-wga"/>
+                        <constraint firstAttribute="bottom" secondItem="QFJ-Xa-5mM" secondAttribute="bottom" id="PqV-8a-UF0"/>
                         <constraint firstItem="1g9-Mh-YkG" firstAttribute="top" secondItem="fey-WK-wUn" secondAttribute="top" id="WIl-CW-rnj"/>
-                        <constraint firstAttribute="trailing" secondItem="OHT-Zi-eEI" secondAttribute="trailing" id="aM7-R1-bWQ"/>
+                        <constraint firstItem="QFJ-Xa-5mM" firstAttribute="top" secondItem="1g9-Mh-YkG" secondAttribute="bottom" id="XGf-2N-mSV"/>
                         <constraint firstAttribute="trailing" secondItem="1g9-Mh-YkG" secondAttribute="trailing" id="hfY-na-wiK"/>
-                        <constraint firstAttribute="bottom" secondItem="OHT-Zi-eEI" secondAttribute="bottom" id="y9l-uA-i4y"/>
+                        <constraint firstAttribute="trailing" secondItem="QFJ-Xa-5mM" secondAttribute="trailing" id="myo-Ja-nOk"/>
                     </constraints>
                 </view>
             </subviews>

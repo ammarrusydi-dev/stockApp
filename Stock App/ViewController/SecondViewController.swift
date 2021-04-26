@@ -48,6 +48,12 @@ class SecondViewController: UIViewController {
     }
     
     @objc func refreshBtnTapped() {
+        self.arrDate = []
+        self.arrStockData = []
+        self.objectArray = []
+        self.arrSymbol = []
+        self.tableView.isHidden = true
+        self.spinner.startAnimating()
         callAPI(arrSymbol: symbol)
     }
     
@@ -164,7 +170,9 @@ extension SecondViewController: UITableViewDelegate {
 
 extension SecondViewController: SearchVCDelegate {
     func searchArrSymbol(arrSymbol: [String]) {
-//        print("arrSymbol: \(symbol)")
+        guard !arrSymbol.isEmpty else {
+            return
+        }
         let symbolTxt = arrSymbol.joined(separator: ", ")
         symbolLbl.text = symbolTxt
         self.symbol = arrSymbol
@@ -175,22 +183,9 @@ extension SecondViewController: SearchVCDelegate {
         self.tableView.isHidden = true
         self.spinner.startAnimating()
         
-        self.callAPI(arrSymbol: arrSymbol)        
-//        var index: Int = 0
-//        for data in arrSymbol {
-//            fetchData(symbol: data, index: index)
-//            index += 1
-//        }
+        self.callAPI(arrSymbol: arrSymbol)
     }
     
     func searchSymbol(symbol: String) {
-//        print("arrSymbol: \(symbol)")
-//        symbolLbl.text = symbol
-//        self.symbol[0] = symbol
-//        self.arrDate = []
-//        self.arrStockData1 = []
-//        self.tableView.isHidden = true
-//        self.spinner.startAnimating()
-//        fetchData(symbol: <#String#>, index: <#Int#>)
     }
 }
