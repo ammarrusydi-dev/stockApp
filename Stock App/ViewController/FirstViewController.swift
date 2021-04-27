@@ -77,9 +77,7 @@ class FirstViewController: UIViewController {
                     self.arrStockData[i].date = self.arrDate[i]
                 }
             }
-            
-           
-            
+
             DispatchQueue.main.async{
                 guard !self.arrStockData.isEmpty else {
                     print("Re-fetching API again~~")

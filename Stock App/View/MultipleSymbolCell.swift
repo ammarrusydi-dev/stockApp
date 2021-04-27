@@ -26,7 +26,6 @@ class MultipleSymbolCell: UITableViewCell {
         // Initialization code
     }
     
-//    func configure(with data: IntradayData, date: String, symbol: String) {
     func configure(with data: IntradayData) {
         
         var dateConverted: Date = Date()
