@@ -15,6 +15,16 @@ class ThirdViewController: UIViewController {
     @IBOutlet weak var dateLbl: UILabel!
     @IBOutlet weak var symbolLbl: UILabel!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
+    @IBOutlet weak var intervalLbl: UILabel!
+    @IBOutlet weak var outputsizeLbl: UILabel!
+    @IBOutlet weak var apiKeyLbl: UILabel!
+    @IBOutlet weak var sortedByLbl: UILabel!
+    @IBOutlet weak var pickerView: UIPickerView!
+    @IBOutlet weak var pickerMainView: UIView!
+    @IBOutlet weak var apiKeyTxtField: UITextField!
+    @IBOutlet weak var pickerSelectBtn: UIButton!
+    
+    var selectedLbl: UILabel!
     
     private let cellIdentifier = "MultipleSymbolCell"
     private var apiData: APIData?
@@ -24,6 +34,7 @@ class ThirdViewController: UIViewController {
     var arrStockData: [IntradayData] = []
     var arrStockAll : [[IntradayData]] = []
     var interval: Int = 15
+    var outputsize: String = "Compact"
     var symbol: [String] = ["AAPL", "IBM", "TSLA"]
     var isDoneFetchingAPI : Bool = false
     
@@ -34,19 +45,55 @@ class ThirdViewController: UIViewController {
     
     var objectArray = [Objects]()
     let apiCallGroup = DispatchGroup()
+    var pickerList: [String] = []
+    let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.isHidden = true
-        self.spinner.startAnimating()
-        tableView.register(UINib.init(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
-        let symbolTxt = symbol.joined(separator: ", ")
-        symbolLbl.text = symbolTxt
-        dateLbl.text = "Symbol"
+        self.initUI()
+        callAPI(arrSymbol: symbol)
+    }
+    
+    func initUI() {
         self.title = "Third Screen"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Refresh", style: .plain, target: self, action: #selector(refreshBtnTapped))
+        
+        tableView.register(UINib.init(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
+        tableView.isHidden = true
+        
+        self.spinner.startAnimating()
+        let symbolTxt = symbol.joined(separator: ", ")
+        readFromUserDefault()
+        symbolLbl.text = symbolTxt
+        dateLbl.text = "Symbol"
+        intervalLbl.text = "\(self.interval) Minutes"
+        outputsizeLbl.text = outputsize
+        apiKeyLbl.text = "XXXXX"
+        Constants.API.APIKEY = getKeychain()
+        apiKeyTxtField.text = Constants.API.APIKEY
         self.clearData()
-        callAPI(arrSymbol: symbol)
+    }
+    
+    func readFromUserDefault() {
+        self.outputsize = defaults.string(forKey: "outputsize") ?? self.outputsize
+        self.interval = defaults.optionalInt(forKey: "interval") ?? self.interval
+    }
+    
+    func setUserDefault() {
+        defaults.set(self.interval, forKey: "interval")
+        defaults.set(self.outputsize, forKey: "outputsize")
+    }
+    
+    func getKeychain() -> String {
+        print("Constants.API.APIKEY: \(Constants.API.APIKEY)")
+        return Keychain.shared.load(withKey: Constants.StringValue.APIKey) ?? Constants.API.APIKEY
+    }
+    
+    func saveToKeychain() {
+        let apiKey : String = apiKeyTxtField.text ?? Constants.API.APIKEY
+        Keychain.shared.save(apiKey, forKey: Constants.StringValue.APIKey)
+        Constants.API.APIKEY = getKeychain()
+        print("saving to keychaing: \(apiKey)")
     }
     
     @objc func refreshBtnTapped() {
@@ -54,6 +101,12 @@ class ThirdViewController: UIViewController {
         self.tableView.isHidden = true
         self.spinner.startAnimating()
         callAPI(arrSymbol: symbol)
+    }
+    
+    func initPickerUI() {
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        pickerMainView.isHidden = false
     }
     
     func callAPI(arrSymbol: [String]) {
@@ -87,7 +140,7 @@ class ThirdViewController: UIViewController {
     
     // API Call
     func fetchData(symbol: String) {
-        NetworkManager().fetchIntraday(symbol: symbol, interval: interval, outputSize: "compact") { (data) in
+        NetworkManager().fetchIntraday(symbol: symbol, interval: self.interval, outputSize: self.outputsize) { (data) in
             self.apiData = data
             
             self.intradayData = data.timeSeries15Min
@@ -134,7 +187,72 @@ class ThirdViewController: UIViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
+    @IBAction func donePickerBtnClicked(_ sender: Any) {
+        let selectedValue = pickerList[pickerView.selectedRow(inComponent: 0)]
+        selectedLbl.text = selectedValue
+        pickerMainView.isHidden = true
+        pickerView.isHidden = false
+        apiKeyTxtField.isHidden = true
+        
+        switch pickerList {
+        case Constants.UIPickerText.sortedBy:
+            setSort(sortBy: selectedValue)
+        case Constants.UIPickerText.outputsize:
+            self.outputsize = selectedValue
+            setUserDefault()
+        case Constants.UIPickerText.interval:
+            setInterval(interval: selectedValue)
+            setUserDefault()
+        case Constants.UIPickerText.apiKey:
+            selectedLbl.text = "XXXXX"
+            self.saveToKeychain()
+        default:
+            return
+        }
+    }
     
+    @IBAction func sortBtnClicked(_ sender: Any) {
+        pickerList = Constants.UIPickerText.sortedBy
+        selectedLbl = sortedByLbl
+        initPickerUI()
+    }
+    
+    @IBAction func apiKeyBtnClicked(_ sender: Any) {
+        pickerList = Constants.UIPickerText.apiKey
+        selectedLbl = apiKeyLbl
+        pickerView.isHidden = true
+        apiKeyTxtField.isHidden = false
+        initPickerUI()
+    }
+    
+    @IBAction func outputsizeBtnClicked(_ sender: Any) {
+        pickerList = Constants.UIPickerText.outputsize
+        selectedLbl = outputsizeLbl
+        initPickerUI()
+    }
+    
+    @IBAction func intervalBtnClicked(_ sender: Any) {
+        pickerList = Constants.UIPickerText.interval
+        selectedLbl = intervalLbl
+        initPickerUI()
+    }
+    
+    func setInterval(interval data: String) {
+        switch data {
+        case Constants.Interval.min1:
+            self.interval = 1
+        case Constants.Interval.min5:
+            self.interval = 5
+        case Constants.Interval.min15:
+            self.interval = 15
+        case Constants.Interval.min30:
+            self.interval = 30
+        case Constants.Interval.min60:
+            self.interval = 60
+        default:
+            self.interval = 15
+        }
+    }
 }
 
 extension ThirdViewController: UITableViewDataSource {
@@ -211,6 +329,32 @@ extension ThirdViewController: SearchVCDelegate {
 // Sorting function
 extension ThirdViewController {
     
+    func startSpinner() {
+        self.tableView.isHidden = true
+        self.spinner.startAnimating()
+    }
+    
+    func stopSpinner() {
+        self.tableView.isHidden = false
+        self.spinner.stopAnimating()
+    }
+    
+    func setSort(sortBy data: String) {
+        startSpinner()
+        switch data {
+        case Constants.SortedBy.date:
+            sortByDate()
+        case Constants.SortedBy.open:
+            sortByOpen()
+        case Constants.SortedBy.high:
+            sortByHigh()
+        case Constants.SortedBy.low:
+            sortByLow()
+        default:
+            sortByDate()
+        }
+    }
+    
     func sortByDate() {
         let sortedArray = self.objectArray.sorted(by: { (img0: Objects , img1: Objects) -> Bool in
             var dateConverted1: Date = Date()
@@ -224,6 +368,8 @@ extension ThirdViewController {
             return dateConverted1 > dateConverted2
         })
         self.objectArray = sortedArray
+        self.tableView.reloadData()
+        stopSpinner()
     }
     
     func sortByOpen() {
@@ -238,6 +384,8 @@ extension ThirdViewController {
             }
             return false
         })
+        self.tableView.reloadData()
+        stopSpinner()
     }
     
     func sortByHigh() {
@@ -252,12 +400,14 @@ extension ThirdViewController {
             }
             return false
         })
+        self.tableView.reloadData()
+        stopSpinner()
     }
     
     func sortByLow() {
         self.objectArray = self.objectArray.sorted(by: { (img0: Objects , img1: Objects) -> Bool in
             for (data, data2) in zip(img0.sectionObjects, img1.sectionObjects) {
-                if Int(data.low?.toDouble() ?? 0) > Int(data2.open?.toDouble() ?? 0) {
+                if Int(data.low?.toDouble() ?? 0) < Int(data2.open?.toDouble() ?? 0) {
                     return true
                 }
                 else {
@@ -266,5 +416,22 @@ extension ThirdViewController {
             }
             return false
         })
+        
+        self.tableView.reloadData()
+        stopSpinner()
+    }
+}
+
+extension ThirdViewController : UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerList.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerList[row]
     }
 }

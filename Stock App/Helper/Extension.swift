@@ -13,3 +13,14 @@ extension String {
         return NumberFormatter().number(from: self)?.doubleValue
     }
 }
+
+extension UserDefaults {
+    
+    public func optionalInt(forKey defaultName: String) -> Int? {
+        let defaults = self
+        if let value = defaults.value(forKey: defaultName) {
+            return value as? Int
+        }
+        return nil
+    }
+}
