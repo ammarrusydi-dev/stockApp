@@ -14,8 +14,6 @@
 		0D6241EC2627440B00DB9FA8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D6241EA2627440B00DB9FA8 /* Main.storyboard */; };
 		0D6241EE2627440D00DB9FA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D6241ED2627440D00DB9FA8 /* Assets.xcassets */; };
 		0D6241F12627440D00DB9FA8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D6241EF2627440D00DB9FA8 /* LaunchScreen.storyboard */; };
-		0D624201262F2C2800DB9FA8 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6241FF262F2C2800DB9FA8 /* SearchBarView.swift */; };
-		0D624202262F2C2800DB9FA8 /* SearchBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D624200262F2C2800DB9FA8 /* SearchBarView.xib */; };
 		0D624205262F326900DB9FA8 /* FieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D624203262F326900DB9FA8 /* FieldTableViewCell.swift */; };
 		0D624206262F326900DB9FA8 /* FieldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D624204262F326900DB9FA8 /* FieldTableViewCell.xib */; };
 		0D624209262F50DA00DB9FA8 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D624208262F50DA00DB9FA8 /* NetworkManager.swift */; };
@@ -44,8 +42,6 @@
 		0D6241ED2627440D00DB9FA8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0D6241F02627440D00DB9FA8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0D6241F22627440D00DB9FA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0D6241FF262F2C2800DB9FA8 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
-		0D624200262F2C2800DB9FA8 /* SearchBarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchBarView.xib; sourceTree = "<group>"; };
 		0D624203262F326900DB9FA8 /* FieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldTableViewCell.swift; sourceTree = "<group>"; };
 		0D624204262F326900DB9FA8 /* FieldTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FieldTableViewCell.xib; sourceTree = "<group>"; };
 		0D624208262F50DA00DB9FA8 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -112,8 +108,6 @@
 		0D6241FA262F287400DB9FA8 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0D6241FF262F2C2800DB9FA8 /* SearchBarView.swift */,
-				0D624200262F2C2800DB9FA8 /* SearchBarView.xib */,
 				0D624203262F326900DB9FA8 /* FieldTableViewCell.swift */,
 				0D624204262F326900DB9FA8 /* FieldTableViewCell.xib */,
 				0D62421D2631EFE800DB9FA8 /* SearchTableViewCell.swift */,
@@ -230,7 +224,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0D624202262F2C2800DB9FA8 /* SearchBarView.xib in Resources */,
 				0DA56E6726356CDF00872781 /* MultipleSymbolCell.xib in Resources */,
 				0D624206262F326900DB9FA8 /* FieldTableViewCell.xib in Resources */,
 				0D6242182631C19B00DB9FA8 /* SearchViewController.xib in Resources */,
@@ -250,7 +243,6 @@
 			files = (
 				0DA56E6C2637CBFA00872781 /* Keychain.swift in Sources */,
 				0D62421C2631DDFC00DB9FA8 /* SearchModel.swift in Sources */,
-				0D624201262F2C2800DB9FA8 /* SearchBarView.swift in Sources */,
 				0D6242172631C19B00DB9FA8 /* SearchViewController.swift in Sources */,
 				0D6241E92627440B00DB9FA8 /* SecondViewController.swift in Sources */,
 				0D624205262F326900DB9FA8 /* FieldTableViewCell.swift in Sources */,

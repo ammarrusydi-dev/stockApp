@@ -84,8 +84,7 @@ class ThirdViewController: UIViewController {
         defaults.set(self.outputsize, forKey: "outputsize")
     }
     
-    func getKeychain() -> String {
-        print("Constants.API.APIKEY: \(Constants.API.APIKEY)")
+    func getKeychain() -> String {        
         return Keychain.shared.load(withKey: Constants.StringValue.APIKey) ?? Constants.API.APIKEY
     }
     
@@ -93,7 +92,6 @@ class ThirdViewController: UIViewController {
         let apiKey : String = apiKeyTxtField.text ?? Constants.API.APIKEY
         Keychain.shared.save(apiKey, forKey: Constants.StringValue.APIKey)
         Constants.API.APIKEY = getKeychain()
-        print("saving to keychaing: \(apiKey)")
     }
     
     @objc func refreshBtnTapped() {
@@ -257,7 +255,6 @@ class ThirdViewController: UIViewController {
 
 extension ThirdViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        print("numberOfSections: \(self.objectArray.count)")
         return self.objectArray.count
     }
     

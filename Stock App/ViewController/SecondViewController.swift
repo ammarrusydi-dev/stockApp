@@ -131,8 +131,7 @@ class SecondViewController: UIViewController {
 }
 
 extension SecondViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-     print("numberOfSections: \(self.objectArray.count)")
+    func numberOfSections(in tableView: UITableView) -> Int {     
         return self.objectArray.count
     }
     
